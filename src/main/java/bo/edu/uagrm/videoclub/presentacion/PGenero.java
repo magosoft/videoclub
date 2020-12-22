@@ -17,7 +17,7 @@ public class PGenero extends HttpServlet {
     private int idGenero;
     private String nombre;
     private String descripcion;
-    
+    private NGenero negocio;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");

@@ -15,7 +15,6 @@ public class DGenero {
 
     private Conexion cnx;
     private int idGenero;
-    private String codigo;
     private String nombre;
     private String descripcion;
 
