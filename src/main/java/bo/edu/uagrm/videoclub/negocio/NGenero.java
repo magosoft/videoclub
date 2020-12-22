@@ -19,36 +19,29 @@ public class NGenero {
         dato = new DGenero();
     }
 
-    public void insertar(Map<String, Object> param) {
-        dato.setCodigo((String) param.get("codigo"));
-        dato.setNombre((String) param.get("nombre"));
-        dato.setDescripcion((String) param.get("descripcion"));
+    public void insertar(String nombre, String descripcion) {        
+        dato.setNombre(nombre);
+        dato.setDescripcion(descripcion);
         dato.insertar();
-    }
+    }    
 
-    public void modificar(Map<String, Object> param) {
-        dato.setIdGenero((Integer) param.get("idGenero"));
-        dato.setCodigo((String) param.get("codigo"));
-        dato.setNombre((String) param.get("nombre"));
-        dato.setDescripcion((String) param.get("descripcion"));
+    public void modificar(int idGenero, String nombre, String descripcion) {
+        dato.setIdGenero(idGenero);
+        dato.setNombre(nombre);
+        dato.setDescripcion(descripcion);
         dato.modificar();
     }
 
-    public void eliminar(Map<String, Object> param) {
-        System.out.println(param);
-        dato.setIdGenero((Integer) param.get("idGenero"));
+    public void eliminar(int idGenero) {        
+        dato.setIdGenero(idGenero);
         dato.eliminar();
     }
 
-    public Map<String, Object> obtener(int id) {
+    public Map<String, Object> obtener(int id) {        
         dato.setIdGenero(id);
-        dato.obtener();
-        if (dato.getIdGenero() == 0) {
-            return null;
-        }
+        dato.obtener();        
         Map<String, Object> ele = new HashMap<>();
         ele.put("idGenero", dato.getIdGenero());
-        ele.put("codigo", dato.getCodigo());
         ele.put("nombre", dato.getNombre());
         ele.put("descripcion", dato.getDescripcion());
         return ele;
@@ -59,11 +52,11 @@ public class NGenero {
         for (DGenero index : dato.listar()) {
             Map<String, Object> ele = new HashMap<>();
             ele.put("idGenero", index.getIdGenero());
-            ele.put("codigo", index.getCodigo());
             ele.put("nombre", index.getNombre());
             ele.put("descripcion", index.getDescripcion());
             lista.add(ele);
         }
         return lista;
     }
+
 }

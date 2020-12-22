@@ -19,31 +19,29 @@ public class NPelicula {
         dato = new DPelicula();
     }
 
-    public void insertar(Map<String, Object> param) {
-        dato.setNombre((String) param.get("nombre"));
-        dato.setSinopsis((String) param.get("sinopsis"));
-        dato.setAnio((String) param.get("anio"));
-        dato.setDuracion((String) param.get("duracion"));
-        dato.setPrecio((BigDecimal) param.get("precio"));       
-        Map<String, Object> genero = (Map<String, Object>) param.get("genero");
-        dato.getGenero().setIdGenero((Integer) genero.get("idGenero"));
+    public void insertar(String nombre, String sinopsis, String anio, String duracion, BigDecimal precio, int idGenero) {
+        dato.setNombre(nombre);
+        dato.setSinopsis(sinopsis);
+        dato.setAnio(anio);
+        dato.setDuracion(duracion);
+        dato.setPrecio(precio);
+        dato.getGenero().setIdGenero(idGenero);
         dato.insertar();
     }
 
-    public void modificar(Map<String, Object> param) {
-        dato.setIdPelicula((Integer) param.get("idPelicula"));
-        dato.setNombre((String) param.get("nombre"));
-        dato.setSinopsis((String) param.get("sinopsis"));
-        dato.setAnio((String) param.get("anio"));
-        dato.setDuracion((String) param.get("duracion"));
-        dato.setPrecio((BigDecimal) param.get("precio"));        
-        Map<String, Object> genero = (Map<String, Object>) param.get("genero");
-        dato.getGenero().setIdGenero((Integer) genero.get("idGenero"));
+    public void modificar(int idPelicula, String nombre, String sinopsis, String anio, String duracion, BigDecimal precio, int idGenero) {
+        dato.setIdPelicula(idPelicula);
+        dato.setNombre(nombre);
+        dato.setSinopsis(sinopsis);
+        dato.setAnio(anio);
+        dato.setDuracion(duracion);
+        dato.setPrecio(precio);
+        dato.getGenero().setIdGenero(idGenero);
         dato.modificar();
     }
 
-    public void eliminar(Map<String, Object> param) {
-        dato.setIdPelicula((Integer) param.get("idPelicula"));
+    public void eliminar(int idPelicula) {
+        dato.setIdPelicula(idPelicula);
         dato.eliminar();
     }
 

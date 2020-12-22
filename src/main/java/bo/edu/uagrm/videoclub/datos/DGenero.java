@@ -31,14 +31,6 @@ public class DGenero {
         this.idGenero = idGenero;
     }
 
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-
     public String getNombre() {
         return nombre;
     }
@@ -56,35 +48,33 @@ public class DGenero {
     }
 
     public void insertar() {
-        String sql = "INSERT INTO datos.genero(codigo, nombre, descripcion) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO datos.genero( nombre, descripcion) VALUES (?, ?)";
         Connection conn;
         try {
             conn = cnx.abrir();
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, codigo);
-            stmt.setString(2, nombre);
-            stmt.setString(3, descripcion);
+            stmt.setString(1, nombre);
+            stmt.setString(2, descripcion);
             stmt.executeUpdate();
         } catch (SQLException ex) {
-
+            System.out.println(ex);
         } finally {
             try {
                 cnx.cerrar();
             } catch (SQLException ex) {
-
+                System.out.println(ex);
             }
         }
     }
 
     public void modificar() {
-        String sql = "UPDATE datos.genero SET codigo = ?, nombre = ?, descripcion = ? WHERE id_genero = " + idGenero;
+        String sql = "UPDATE datos.genero SET nombre = ?, descripcion = ? WHERE id_genero = " + idGenero;
         Connection conn;
         try {
             conn = cnx.abrir();
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, codigo);
-            stmt.setString(2, nombre);
-            stmt.setString(3, descripcion);
+            stmt.setString(1, nombre);
+            stmt.setString(2, descripcion);
             stmt.executeUpdate();
         } catch (SQLException ex) {
 
@@ -124,7 +114,6 @@ public class DGenero {
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 idGenero = rs.getInt("id_genero");
-                codigo = rs.getString("codigo");
                 nombre = rs.getString("nombre");
                 descripcion = rs.getString("descripcion");
             }
@@ -149,7 +138,6 @@ public class DGenero {
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 idGenero = rs.getInt("id_genero");
-                codigo = rs.getString("codigo");
                 nombre = rs.getString("nombre");
                 descripcion = rs.getString("descripcion");
                 lista.add(this);
@@ -157,7 +145,6 @@ public class DGenero {
             while (rs.next()) {
                 DGenero item = new DGenero();
                 item.setIdGenero(rs.getInt("id_genero"));
-                item.setCodigo(rs.getString("codigo"));
                 item.setNombre(rs.getString("nombre"));
                 item.setDescripcion(rs.getString("descripcion"));
                 lista.add(item);
